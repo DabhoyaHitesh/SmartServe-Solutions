@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Dashboard | SmartServe Solutions</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 min-h-screen flex flex-col">
+
+    
+
+<!-- ================= HEADER ================= -->
+<header class="bg-blue-900 text-white">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+    <h1 class="text-2xl font-bold">SmartServe Solutions</h1>
+    <div class="flex items-center gap-4">
+      <span>Admin Panel</span>
+      <button class="bg-red-500 px-4 py-2 rounded hover:bg-red-600">
+        Logout
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ================ Welcome ================= -->
+<!-- <div class="flex flex-1">
+<aside class="w-64 bg-blue-800 text-white "></aside>
+<section class="text-gray-600 body-font">
+    <div class="container mx-48 px-40 py-10 ">
+      <div class="flex flex-col text-center w-full mb-5">
+        <h1 class="sm:text-4xl text-3xl font-medium title-font mb-2 text-gray-900">Welcome To!</h1>
+        <p class="lg:w-4/4 mx-auto leading-relaxed text-base">Admin-dashboard</p>
+      </div>  
+    </div>
+  </section>
+</div> -->
+<!-- ================= MAIN CONTENT ================= -->
+<div class="flex flex-1">
+
+  <!-- SIDEBAR -->
+  <aside class="w-64 bg-blue-800 text-white p-4">
+    <nav class="space-y-2">
+      <a href="index.html" class="block px-4 py-2 rounded bg-blue-700">Dashboard</a>
+      <a href="service-request.html" class="block px-4 py-2 rounded hover:bg-blue-700">Service Requests</a>
+      <a href="assign-technician.html" class="block px-4 py-2 rounded hover:bg-blue-700">Assign Technician</a>
+      <!-- <a class="block px-4 py-2 rounded hover:bg-blue-700">Service Status</a> -->
+      <a href="payments.html" class="block px-4 py-2 rounded hover:bg-blue-700">Payments</a>
+      <!-- <a class="block px-4 py-2 rounded hover:bg-blue-700">Reports</a> -->
+    </nav>
+  </aside>
+
+  <!-- DASHBOARD AREA -->
+  <main class="flex-1 p-6">
+    <h2 class="text-xl font-bold mb-4">Welcome To Admin-dashboard !</h2>
+
+    <!-- OVERVIEW CARDS -->
+    <div class="grid md:grid-cols-4 gap-6 mb-8">
+      <div class="bg-white p-5 rounded shadow">
+        <p class="text-sm text-gray-500">Total Requests</p>
+        <h2 class="text-2xl font-bold">180</h2>
+      </div>
+
+      <div class="bg-white p-5 rounded shadow">
+        <p class="text-sm text-gray-500">Pending Services</p>
+        <h2 class="text-2xl font-bold text-yellow-500">45</h2>
+      </div>
+
+      <div class="bg-white p-5 rounded shadow">
+        <p class="text-sm text-gray-500">Completed Services</p>
+        <h2 class="text-2xl font-bold text-green-600">120</h2>
+      </div>
+
+      <div class="bg-white p-5 rounded shadow">
+        <p class="text-sm text-gray-500">Total Revenue</p>
+        <h2 class="text-2xl font-bold">₹98,000</h2>
+      </div>
+    </div>
+
+    <!-- SERVICE REQUEST TABLE -->
+    <div class="bg-white p-6 rounded shadow mb-8">
+      <h2 class="text-lg font-bold mb-4">Service Requests</h2>
+
+      <table class="w-full border">
+        <thead class="bg-gray-200">
+          <tr>
+            <th class="p-2 border">Request ID</th>
+            <th class="p-2 border">Customer</th>
+            <th class="p-2 border">Service Type</th>
+            <th class="p-2 border">Status</th>
+            <th class="p-2 border">Action</th>
+          </tr>
+        </thead>
+
+        <tbody class="text-center">
+          <tr>
+            <td class="p-2 border">SR301</td>
+            <td class="p-2 border">Rohit</td>
+            <td class="p-2 border">AC Repair</td>
+            <td class="p-2 border text-yellow-600">Pending</td>
+            <td class="p-2 border">
+              <button class="bg-blue-600 text-white px-3 py-1 rounded">
+                Assign
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+
+    <!-- ASSIGNED TECHNICIAN DETAILS -->
+<div class="bg-white rounded shadow p-6 mb-6">
+    <h3 class="text-lg font-semibold mb-4">Assigned Technician Details</h3>
+  
+    <table class="w-full border">
+      <thead class="bg-gray-200">
+        <tr>
+          <th class="p-2 border">Request ID</th>
+          <th class="p-2 border">Service Type</th>
+          <th class="p-2 border">Technician</th>
+          <th class="p-2 border">Contact</th>
+          <th class="p-2 border">Status</th>
+        </tr>
+      </thead>
+  
+      <tbody class="text-center">
+        <tr>
+          <td class="p-2 border">SR301</td>
+          <td class="p-2 border">AC Repair</td>
+          <td class="p-2 border">Ramesh Patel</td>
+          <td class="p-2 border">9876543210</td>
+          <td class="p-2 border text-blue-600">Assigned</td>
+        </tr>
+  
+        <tr>
+          <td class="p-2 border">SR302</td>
+          <td class="p-2 border">Laptop Repair</td>
+          <td class="p-2 border">Amit Shah</td>
+          <td class="p-2 border">9123456789</td>
+          <td class="p-2 border text-green-600">Completed</td>
+        </tr>
+  
+        <tr>
+          <td class="p-2 border">SR303</td>
+          <td class="p-2 border">Mobile Repair</td>
+          <td class="p-2 border">Suresh Kumar</td>
+          <td class="p-2 border">9988776655</td>
+          <td class="p-2 border text-yellow-600">In Progress</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+    <!-- PAYMENT SECTION -->
+    <div class="bg-white p-6 rounded shadow mb-8">
+      <h2 class="text-lg font-bold mb-4">Payment Records</h2>
+      <p class="text-sm text-gray-600">
+        View all online payments made by customers.
+      </p>
+    </div>
+
+    
+
+  </main>
+</div>
+
+<!-- ================= FOOTER ================= -->
+<footer class="bg-blue-900 text-white text-center py-4">
+  <p>© 2025 SmartServe Solutions</p>
+  <p class="text-sm">Web-Based Online Service Management System</p>
+</footer>
+
+
+
+
+  
+  
+</body>
+</html>
+

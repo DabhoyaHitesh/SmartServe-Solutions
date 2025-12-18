@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Payments | SmartServe Solutions</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 min-h-screen flex flex-col">
+
+<!-- HEADER -->
+<header class="bg-blue-900 text-white">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <h1 class="text-2xl font-bold">SmartServe Solutions</h1>
+      <div class="flex items-center gap-4">
+        <span>Admin Panel</span>
+        <button class="bg-red-500 px-4 py-2 rounded hover:bg-red-600">
+          Logout
+        </button>
+      </div>
+    </div>
+  </header>
+
+<div class="flex flex-1">
+
+<!-- SIDEBAR -->
+<aside class="w-64 bg-blue-800 text-white p-4">
+  <nav class="space-y-2">
+    <a href="index.html" class="block px-4 py-2 hover:bg-blue-700 rounded">Dashboard</a>
+    <a href="service-request.html" class="block px-4 py-2 hover:bg-blue-700 rounded">Service Requests</a>
+    <a href="assign-technician.html" class="block px-4 py-2 hover:bg-blue-700 rounded">Assign Technician</a>
+    <a class="block px-4 py-2 bg-blue-700 rounded">Payments</a>
+  </nav>
+</aside>
+
+<!-- CONTENT -->
+<main class="flex-1 p-6">
+
+  <h2 class="text-xl font-bold mb-4">Payment Records</h2>
+
+  <!-- FILTER SECTION -->
+  <div class="bg-white p-4 rounded shadow mb-4 flex flex-wrap gap-4">
+
+    <input 
+      type="text" 
+      id="searchInput"
+      placeholder="Search by Payment ID / Request ID"
+      class="border p-2 rounded w-72"
+      onkeyup="filterPayments()"
+    >
+
+    <select 
+      id="statusFilter"
+      class="border p-2 rounded"
+      onchange="filterPayments()"
+    >
+      <option value="All">All Status</option>
+      <option value="Paid">Paid</option>
+      <option value="Pending">Pending</option>
+    </select>
+
+    <input 
+      type="date" 
+      id="dateFilter"
+      class="border p-2 rounded"
+      onchange="filterPayments()"
+    >
+
+  </div>
+
+  <!-- TOTAL SUMMARY -->
+  <div class="bg-white p-4 rounded shadow mb-4">
+    <p class="text-lg font-semibold">
+      Total Paid Amount: <span id="totalAmount" class="text-green-600">₹0</span>
+    </p>
+  </div>
+
+  <!-- PAYMENT TABLE -->
+  <div class="bg-white p-6 rounded shadow">
+    <table class="w-full border" id="paymentTable">
+      <thead class="bg-gray-200">
+        <tr>
+          <th class="p-2 border">Payment ID</th>
+          <th class="p-2 border">Request ID</th>
+          <th class="p-2 border">Customer</th>
+          <th class="p-2 border">Amount (₹)</th>
+          <th class="p-2 border">Date</th>
+          <th class="p-2 border">Status</th>
+        </tr>
+      </thead>
+
+      <tbody class="text-center">
+        <tr>
+          <td class="p-2 border">P101</td>
+          <td class="p-2 border">SR302</td>
+          <td class="p-2 border">Neha</td>
+          <td class="p-2 border amount">1500</td>
+          <td class="p-2 border">2025-06-11</td>
+          <td class="p-2 border text-green-600">Paid</td>
+        </tr>
+
+        <tr>
+          <td class="p-2 border">P102</td>
+          <td class="p-2 border">SR303</td>
+          <td class="p-2 border">Amit</td>
+          <td class="p-2 border amount">1200</td>
+          <td class="p-2 border">2025-06-12</td>
+          <td class="p-2 border text-yellow-600">Pending</td>
+        </tr>
+
+        <tr>
+          <td class="p-2 border">P103</td>
+          <td class="p-2 border">SR304</td>
+          <td class="p-2 border">Pooja</td>
+          <td class="p-2 border amount">1800</td>
+          <td class="p-2 border">2025-06-10</td>
+          <td class="p-2 border text-green-600">Paid</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</main>
+</div>
+
+<!-- FOOTER -->
+<footer class="bg-blue-900 text-white text-center py-4">
+    <p>© 2025 SmartServe Solutions</p>
+    <p class="text-sm">Web-Based Online Service Management System</p>
+  </footer>
+
+<!-- SCRIPT -->
+<script>
+function filterPayments() {
+  const search = document.getElementById("searchInput").value.toUpperCase();
+  const status = document.getElementById("statusFilter").value;
+  const date = document.getElementById("dateFilter").value;
+  const table = document.getElementById("paymentTable");
+  const rows = table.getElementsByTagName("tr");
+
+  let total = 0;
+
+  for (let i = 1; i < rows.length; i++) {
+    const cells = rows[i].getElementsByTagName("td");
+
+    const paymentId = cells[0].textContent.toUpperCase();
+    const requestId = cells[1].textContent.toUpperCase();
+    const amount = parseInt(cells[3].textContent);
+    const rowDate = cells[4].textContent;
+    const rowStatus = cells[5].textContent;
+
+    const matchSearch = paymentId.includes(search) || requestId.includes(search);
+    const matchStatus = status === "All" || rowStatus === status;
+    const matchDate = !date || rowDate === date;
+
+    if (matchSearch && matchStatus && matchDate) {
+      rows[i].style.display = "";
+      if (rowStatus === "Paid") {
+        total += amount;
+      }
+    } else {
+      rows[i].style.display = "none";
+    }
+  }
+
+  document.getElementById("totalAmount").textContent = "₹" + total;
+}
+
+// initial total calculation
+filterPayments();
+</script>
+
+</body>
+</html>
